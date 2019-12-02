@@ -2,13 +2,9 @@ package com.museumapi.entity.models;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,7 +18,7 @@ public class UserInteractions implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2913572713857125084L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@NotNull
@@ -36,6 +32,8 @@ public class UserInteractions implements Serializable {
 	@JoinColumn(name = "beaconsid_beacon")
 	private Beacons beacon;
 	
+	@Id
+	@NotNull
 	@Column(name = "date_interaction")
 	private Timestamp dateInteraction;
 
@@ -43,7 +41,7 @@ public class UserInteractions implements Serializable {
 		super();
 	}
 
-	public UserInteractions(@NotNull Users user, @NotNull Beacons beacon, Timestamp dateInteraction) {
+	public UserInteractions(@NotNull Users user, @NotNull Beacons beacon, @NotNull Timestamp dateInteraction) {
 		super();
 		this.user = user;
 		this.beacon = beacon;
@@ -77,7 +75,5 @@ public class UserInteractions implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	
 	
 }

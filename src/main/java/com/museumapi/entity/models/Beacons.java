@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -33,16 +35,21 @@ public class Beacons implements Serializable{
 	
 	@OneToMany(mappedBy = "beacon", cascade = CascadeType.ALL)
 	private Set<UserInteractions> uInteraction;
+	
+	@ManyToOne
+	@JoinColumn(name = "expositionsid_exposition")
+	private Expositions expo;
 
 	public Beacons() {
 		super();
 	}
 
-	public Beacons(@NotNull int idBeacon, boolean status, Set<UserInteractions> uInteraction) {
+	public Beacons(@NotNull int idBeacon, boolean status, Set<UserInteractions> uInteraction, Expositions expo) {
 		super();
 		this.idBeacon = idBeacon;
 		this.status = status;
 		this.uInteraction = uInteraction;
+		this.expo = expo;
 	}
 
 	public int getIdBeacon() {
@@ -69,12 +76,16 @@ public class Beacons implements Serializable{
 		this.uInteraction = uInteraction;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Expositions getExpo() {
+		return expo;
 	}
 
+	public void setExpo(Expositions expo) {
+		this.expo = expo;
+	}
 
-
-
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}	
 	
 }
