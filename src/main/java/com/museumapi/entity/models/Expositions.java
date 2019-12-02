@@ -12,10 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 
 
 @Entity
@@ -33,12 +33,15 @@ public class Expositions implements Serializable{
 	@Column(name = "id_exposition")
 	private int idExposition;
 	
+	@JsonView(Views.ClientUser.class)
 	@Column
 	private String name; 
 	
+	@JsonView(Views.ClientUser.class)
 	@Column
 	private String authors;
 	
+	@JsonView(Views.ClientUser.class)
 	@Column(name = "artworks_number")
 	private int artworksNumber;
 	

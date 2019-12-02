@@ -15,6 +15,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "Beacons")
 public class Beacons implements Serializable{
@@ -33,9 +38,12 @@ public class Beacons implements Serializable{
 	@Column
 	private boolean status;
 	
+	@JsonIgnoreProperties("beacon")
+	@JsonManagedReference
 	@OneToMany(mappedBy = "beacon", cascade = CascadeType.ALL)
 	private Set<UserInteractions> uInteraction;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "expositionsid_exposition")
 	private Expositions expo;
@@ -86,6 +94,8 @@ public class Beacons implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}	
+	}
+
+	
 	
 }

@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.museumapi.entity.models.Users;
+import com.museumapi.entity.models.Views;
 import com.museumapi.entity.services.IUserService;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class UserController {
 		return userService.getAllUsers();		
 	}
 	
+	@JsonView(Views.ClientUser.class)
 	@GetMapping("/api/getUser/{id}")
 	private Users getOne(@PathVariable(value = "id") int id) {
 		return userService.getOneUser(id);		

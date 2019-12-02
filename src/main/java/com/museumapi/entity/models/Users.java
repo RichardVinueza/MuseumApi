@@ -14,6 +14,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "users")
 public class Users implements Serializable{
@@ -24,24 +29,29 @@ public class Users implements Serializable{
 	 */
 	private static final long serialVersionUID = 1249085882126761391L;
 
+	@JsonView(Views.ClientUser.class)
 	@Id
 	@Column(name = "id_user")
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUser;
 	
+	@JsonView(Views.ClientUser.class)
 	@Column(name = "full_name")
 	@NotEmpty
 	private String fullName;
 	
+	@JsonView(Views.ClientUser.class)
 	@Column
 	@NotEmpty
 	private String email;
 	
+	@JsonView(Views.ClientUser.class)
 	@Column
 	@NotEmpty
 	private String nationality;
 	
+	@JsonView(Views.ClientUser.class)
 	@Column
 	@NotEmpty
 	private String password;
@@ -50,6 +60,8 @@ public class Users implements Serializable{
 	@NotNull
 	private boolean admin;
 	
+	@JsonIgnoreProperties("user")
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<UserInteractions> uInteraction;
 
@@ -127,6 +139,11 @@ public class Users implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Users findOne(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
