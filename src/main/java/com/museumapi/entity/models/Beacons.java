@@ -29,21 +29,22 @@ public class Beacons implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@JsonView(Views.User.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_beacon")
 	@NotNull
 	private int idBeacon;
 	
+	@JsonView(Views.User.class)
 	@Column
 	private boolean status;
 	
 	@JsonIgnoreProperties("beacon")
-	@JsonManagedReference
 	@OneToMany(mappedBy = "beacon", cascade = CascadeType.ALL)
 	private Set<UserInteractions> uInteraction;
 	
-	@JsonBackReference
+	@JsonView(Views.User.class)
 	@ManyToOne
 	@JoinColumn(name = "expositionsid_exposition")
 	private Expositions expo;

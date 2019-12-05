@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 
 
@@ -27,37 +26,44 @@ public class Expositions implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@JsonView(Views.User.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	@Column(name = "id_exposition")
 	private int idExposition;
 	
-	@JsonView(Views.ClientUser.class)
+	@JsonView(Views.User.class)
 	@Column
 	private String name; 
 	
-	@JsonView(Views.ClientUser.class)
+	@JsonView(Views.User.class)
 	@Column
 	private String authors;
 	
-	@JsonView(Views.ClientUser.class)
+	@JsonView(Views.User.class)
 	@Column(name = "artworks_number")
 	private int artworksNumber;
 	
+	@JsonView(Views.User.class)
 	@Column(name = "time_frame")
 	private Timestamp timeFrame;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy = "expo", cascade = CascadeType.ALL)
 	private Set<Beacons> beacons;
+	
+	@OneToMany(mappedBy = "resourceExpo", cascade = CascadeType.ALL)
+	private Set<Resources> resourceExpo;
+	
+	@OneToMany(mappedBy = "artExpo", cascade = CascadeType.ALL)
+	private Set<Artworks> artExpositions;
 
 	public Expositions() {
 		super();
 	}
 
 	public Expositions(@NotNull int idExposition, String name, String authors, int artworksNumber, Timestamp timeFrame,
-			Set<Beacons> beacons) {
+			Set<Beacons> beacons, Set<Resources> resourceExpo, Set<Artworks> artExpositions) {
 		super();
 		this.idExposition = idExposition;
 		this.name = name;
@@ -65,6 +71,8 @@ public class Expositions implements Serializable{
 		this.artworksNumber = artworksNumber;
 		this.timeFrame = timeFrame;
 		this.beacons = beacons;
+		this.resourceExpo = resourceExpo;
+		this.artExpositions = artExpositions;
 	}
 
 	public int getIdExposition() {
@@ -115,10 +123,24 @@ public class Expositions implements Serializable{
 		this.beacons = beacons;
 	}
 
+	public Set<Resources> getResourceExpo() {
+		return resourceExpo;
+	}
+
+	public void setResourceExpo(Set<Resources> resourceExpo) {
+		this.resourceExpo = resourceExpo;
+	}
+
+	public Set<Artworks> getArtExpositions() {
+		return artExpositions;
+	}
+
+	public void setArtExpositions(Set<Artworks> artExpositions) {
+		this.artExpositions = artExpositions;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	
-	
 }

@@ -22,46 +22,44 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 @Table(name = "users")
 public class Users implements Serializable{
-
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1249085882126761391L;
-
-	@JsonView(Views.ClientUser.class)
+	
+	@JsonView(Views.User.class)
 	@Id
 	@Column(name = "id_user")
 	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUser;
 	
-	@JsonView(Views.ClientUser.class)
+	@JsonView(Views.User.class)
 	@Column(name = "full_name")
 	@NotEmpty
 	private String fullName;
 	
-	@JsonView(Views.ClientUser.class)
+	@JsonView(Views.User.class)
 	@Column
 	@NotEmpty
 	private String email;
 	
-	@JsonView(Views.ClientUser.class)
+	@JsonView(Views.User.class)
 	@Column
 	@NotEmpty
 	private String nationality;
 	
-	@JsonView(Views.ClientUser.class)
+	@JsonView(Views.User.class)
 	@Column
 	@NotEmpty
 	private String password;
 	
+	@JsonView(Views.User.class)
 	@Column
 	@NotNull
 	private boolean admin;
 	
 	@JsonIgnoreProperties("user")
-	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<UserInteractions> uInteraction;
 

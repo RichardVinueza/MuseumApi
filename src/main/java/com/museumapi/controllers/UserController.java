@@ -21,12 +21,13 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	
+	@JsonView(Views.User.class)
 	@GetMapping("/api/getUsers")
 	private List<Users> getUsers(){
 		return userService.getAllUsers();		
 	}
 	
-	@JsonView(Views.ClientUser.class)
+	@JsonView(Views.User.class)
 	@GetMapping("/api/getUser/{id}")
 	private Users getOne(@PathVariable(value = "id") int id) {
 		return userService.getOneUser(id);		

@@ -19,4 +19,24 @@ public class ExpositionServiceImpl implements IExpositionService {
 		return (List<Expositions>) expoDao.findAll();
 	}
 
+	@Override
+	public Expositions getOneExposition(int id) {
+		return expoDao.findById(id).get();
+	}
+
+	@Override
+	public void addExposition(Expositions expo) {
+		expoDao.save(expo);
+	}
+
+	@Override
+	public void delete(int id) {
+		expoDao.deleteById(id);	
+	}
+
+
+
+
+	
+
 }

@@ -8,4 +8,13 @@ public interface IExpositionService {
 
 	List<Expositions> getAllExpositions();
 
+	Expositions getOneExposition(int id);
+
+	void addExposition(Expositions expo);
+
+	void delete(int id);
+
+
+
+
 }
