@@ -34,9 +34,13 @@ public class ExpositionServiceImpl implements IExpositionService {
 		expoDao.deleteById(id);	
 	}
 
-
-
-
-	
+	@Override
+	public void putExposition(Expositions expo, int id) {
+		expoDao.findById(id).ifPresent((x)->{
+			expo.setIdExposition(id);
+			expoDao.save(expo);
+		});
+		
+	}
 
 }

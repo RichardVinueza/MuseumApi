@@ -14,6 +14,8 @@ public interface IExpositionService {
 
 	void delete(int id);
 
+	void putExposition(Expositions expo, int id);
+
 
 
 

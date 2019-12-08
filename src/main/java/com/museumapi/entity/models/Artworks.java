@@ -58,6 +58,10 @@ public class Artworks implements Serializable{
 	private String creationPeriod;
 	
 	@JsonView(Views.User.class)
+	@Column
+	private String image;
+	
+	@JsonView(Views.User.class)
 	@ManyToOne
 	@JoinColumn(name = "expositionsid_exposition")
 	@NotNull
@@ -65,15 +69,13 @@ public class Artworks implements Serializable{
 	
 	@OneToMany(mappedBy = "resourceArtWork", cascade = CascadeType.ALL)
 	private Set<Resources> resourcesArtWorks;
-	
 
 	public Artworks() {
 		super();
 	}
 
-
 	public Artworks(@NotNull int idArtwork, String name, String authorFullName, String authorNationality,
-			String category, int creationDate, String creationPeriod, @NotNull Expositions artExpo,
+			String category, int creationDate, String creationPeriod, String image, @NotNull Expositions artExpo,
 			Set<Resources> resourcesArtWorks) {
 		super();
 		this.idArtwork = idArtwork;
@@ -83,103 +85,93 @@ public class Artworks implements Serializable{
 		this.category = category;
 		this.creationDate = creationDate;
 		this.creationPeriod = creationPeriod;
+		this.image = image;
 		this.artExpo = artExpo;
 		this.resourcesArtWorks = resourcesArtWorks;
 	}
-
 
 	public int getIdArtwork() {
 		return idArtwork;
 	}
 
-
 	public void setIdArtwork(int idArtwork) {
 		this.idArtwork = idArtwork;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getAuthorFullName() {
 		return authorFullName;
 	}
 
-
 	public void setAuthorFullName(String authorFullName) {
 		this.authorFullName = authorFullName;
 	}
-
 
 	public String getAuthorNationality() {
 		return authorNationality;
 	}
 
-
 	public void setAuthorNationality(String authorNationality) {
 		this.authorNationality = authorNationality;
 	}
-
 
 	public String getCategory() {
 		return category;
 	}
 
-
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
 
 	public int getCreationDate() {
 		return creationDate;
 	}
 
-
 	public void setCreationDate(int creationDate) {
 		this.creationDate = creationDate;
 	}
-
 
 	public String getCreationPeriod() {
 		return creationPeriod;
 	}
 
-
 	public void setCreationPeriod(String creationPeriod) {
 		this.creationPeriod = creationPeriod;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public Expositions getArtExpo() {
 		return artExpo;
 	}
 
-
 	public void setArtExpo(Expositions artExpo) {
 		this.artExpo = artExpo;
 	}
-
 
 	public Set<Resources> getResourcesArtWorks() {
 		return resourcesArtWorks;
 	}
 
-
 	public void setResourcesArtWorks(Set<Resources> resourcesArtWorks) {
 		this.resourcesArtWorks = resourcesArtWorks;
 	}
 
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+		
 }

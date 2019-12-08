@@ -17,6 +17,15 @@ public class ResourceServiceImpl implements IResourceService{
 	public List<Resources> getAllResources() {
 		return (List<Resources>) resourceDao.findAll();
 	}
+	@Override
+	public Resources getOneResource(int id) {
+		return resourceDao.findById(id).get();
+	}
+	@Override
+	public void addResource(Resources resource) {
+		resourceDao.save(resource);
+		
+	}
 	
 	
 

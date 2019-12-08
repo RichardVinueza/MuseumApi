@@ -8,4 +8,8 @@ public interface IResourceService {
 
 	List<Resources> getAllResources();
 
+	Resources getOneResource(int id);
+
+	void addResource(Resources resource);
+
 }
