@@ -38,20 +38,12 @@ public class Expositions implements Serializable{
 	private String name; 
 	
 	@JsonView(Views.User.class)
-	@Column
-	private String authors;
-	
-	@JsonView(Views.User.class)
 	@Column(name = "artworks_number")
 	private int artworksNumber;
 	
 	@JsonView(Views.User.class)
 	@Column(name = "time_frame")
 	private Timestamp timeFrame;
-	
-	@JsonView(Views.User.class)
-	@Column
-	private String image;
 	
 	@OneToMany(mappedBy = "expo", cascade = CascadeType.ALL)
 	private Set<Beacons> beacons;
@@ -66,15 +58,13 @@ public class Expositions implements Serializable{
 		super();
 	}
 
-	public Expositions(@NotNull int idExposition, String name, String authors, int artworksNumber, Timestamp timeFrame,
-			String image, Set<Beacons> beacons, Set<Resources> resourceExpo, Set<Artworks> artExpositions) {
+	public Expositions(@NotNull int idExposition, String name, int artworksNumber, Timestamp timeFrame,
+			Set<Beacons> beacons, Set<Resources> resourceExpo, Set<Artworks> artExpositions) {
 		super();
 		this.idExposition = idExposition;
 		this.name = name;
-		this.authors = authors;
 		this.artworksNumber = artworksNumber;
 		this.timeFrame = timeFrame;
-		this.image = image;
 		this.beacons = beacons;
 		this.resourceExpo = resourceExpo;
 		this.artExpositions = artExpositions;
@@ -96,14 +86,6 @@ public class Expositions implements Serializable{
 		this.name = name;
 	}
 
-	public String getAuthors() {
-		return authors;
-	}
-
-	public void setAuthors(String authors) {
-		this.authors = authors;
-	}
-
 	public int getArtworksNumber() {
 		return artworksNumber;
 	}
@@ -118,14 +100,6 @@ public class Expositions implements Serializable{
 
 	public void setTimeFrame(Timestamp timeFrame) {
 		this.timeFrame = timeFrame;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
 	}
 
 	public Set<Beacons> getBeacons() {

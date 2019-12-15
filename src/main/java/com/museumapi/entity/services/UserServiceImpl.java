@@ -44,6 +44,7 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public void addUser(Users user) {
+		System.out.println("tibu servicio" + user.getEmail());
 		userDao.save(user);
 		
 	}
