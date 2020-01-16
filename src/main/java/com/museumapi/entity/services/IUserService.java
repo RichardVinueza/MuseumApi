@@ -16,6 +16,8 @@ public interface IUserService {
 
 	void addUser(Users user);
 
+	String showJReport(String formatReport);
+
 
 
 }

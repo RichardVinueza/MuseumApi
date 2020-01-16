@@ -35,23 +35,27 @@ public class UserController {
 		return userService.getOneUser(id);		
 	}
 	
-	@PostMapping("api/postUser")
+	@PostMapping("/api/postUser")
 	private void addUser(Users user) {
 		System.out.println("tibu" + user.getEmail());
 		userService.addUser(user);
 		System.out.println(user);
 	}
 	
-	@DeleteMapping("api/deleteUser/{id}")
+	@DeleteMapping("/api/deleteUser/{id}")
 	private void deleteUser(@PathVariable(value = "id")int id) {
 		userService.delete(id);
-		
-		
+			
 	}
 	
-	@PutMapping("api/putUser/{id}")
+	@PutMapping("/api/putUser/{id}")
 	private void putUser(Users user, @PathVariable(value = "id")int id) {
 		userService.put(user, id);
+	}
+	
+	@GetMapping("/api/users/jreport")
+	public String showJReport() {
+		return userService.showJReport("pdf");
 	}
 		
 }
