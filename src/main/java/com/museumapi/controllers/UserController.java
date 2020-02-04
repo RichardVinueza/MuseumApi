@@ -55,7 +55,7 @@ public class UserController {
 	
 	@GetMapping("/api/users/jreport")
 	public String showJReport() {
-		return userService.showJReport("pdf");
+		return userService.showJReport("files have been created");
 	}
 		
 }
